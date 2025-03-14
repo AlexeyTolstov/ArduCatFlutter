@@ -9,7 +9,6 @@ import 'package:ArduinoSimulator/widgets/drop_device_widget.dart';
 import 'package:ArduinoSimulator/widgets/task_device_row_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class ConnectDevicePage extends StatefulWidget {
   const ConnectDevicePage({super.key});
 
@@ -33,40 +32,32 @@ class _ConnectDevicePageState extends State<ConnectDevicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ApplicationStyles.applicationColors.dropDeviceBackgroundColor,
-      body: MainDataProvider(
-        notifier: MainData(
-          deviceList: deviceList,
-          wireList: wireList,
-          updateData: () {
-            setState(() { });
-          },
-          onComplete: () {
-            print("Complete");
-            setState(() {
-              
-            });
-          },
-          onReset: () {
-            setState(
-              () {
-                for (final device in deviceList) {
-                  device.isDropped = false;
-                }
-                wireList.clear();
-              } 
-            );
-            
-            print("RESET");
-          }
-        ),
-        child: const Row(
-          children: [
-            TaskDeviceRowWidget(),
-            DropDeviceWidget()
-          ],
-        ),
-      )
-    );
+        backgroundColor:
+            ApplicationStyles.applicationColors.dropDeviceBackgroundColor,
+        body: MainDataProvider(
+          notifier: MainData(
+              deviceList: deviceList,
+              wireList: wireList,
+              updateData: () {
+                setState(() {});
+              },
+              onComplete: () {
+                print("Complete");
+                setState(() {});
+              },
+              onReset: () {
+                setState(() {
+                  for (final device in deviceList) {
+                    device.isDropped = false;
+                  }
+                  wireList.clear();
+                });
+
+                print("RESET");
+              }),
+          child: const Row(
+            children: [TaskDeviceRowWidget(), DropDeviceWidget()],
+          ),
+        ));
   }
 }
